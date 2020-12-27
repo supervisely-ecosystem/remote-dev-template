@@ -1,22 +1,25 @@
 ARG IMAGE
-ARG PASS
 FROM $IMAGE
 
 RUN apt-get update && apt-get install -y openssh-server
-RUN ssh-keygen -A
+EXPOSE 22
+
 RUN mkdir -p /run/sshd
 
-RUN echo 'root:debug' | chpasswd
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+# Create a group and user account for the SSH connection
+RUN groupadd sshgroup && useradd -ms /bin/bash -g sshgroup sshuser
 
-# # SSH login fix. Otherwise user is kicked off after login
-RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+# NOT RECOMMENDED: Set a password on the sshuser account
+# RUN echo 'sshuser:Pa$$word' | chpasswd
 
-ENV NOTVISIBLE "in users profile"
-RUN echo "export VISIBLE=now" >> /etc/profile
+# MORE SECURE: use a trusted RSA key
+ARG home=/home/sshuser
+RUN mkdir $home/.ssh
+COPY id_rsa.pub $home/.ssh/authorized_keys
+RUN chown sshuser:sshgroup $home/.ssh/authorized_keys && \
+    chmod 600 $home/.ssh/authorized_keys
 
 COPY sshd_deamon.sh /sshd_deamon.sh
 RUN chmod 755 /sshd_deamon.sh
-
 CMD ["/sshd_deamon.sh"]
 ENTRYPOINT ["sh", "-c", "/sshd_deamon.sh"]

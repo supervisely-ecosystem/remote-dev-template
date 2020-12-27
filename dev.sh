@@ -1,5 +1,4 @@
 IMAGE=supervisely/base-py
-PASS="debug"
 
 docker pull $IMAGE && \
 docker build --build-arg IMAGE=$IMAGE -t $IMAGE"-debug" . && \

@@ -2,6 +2,20 @@
 
 
 
+## 1. Clone template repository
+git clone https://github.com/mkolomeychenko/remote-dev-template
+
+Result dir on my remote machine: `~/max/remote-dev-template`
+
+## 2. Copy your SSH public key 
+
+hint: scp <source> <destination>
+`scp ~/.ssh/id_rsa.pub gpu1:~/max/remote-dev-template/id_rsa.pub`
+
+## 3. Run docker container
+- change dockerimage in template
+- run container
+
 
 ## Browse files on remote server
 https://apple.stackexchange.com/questions/5209/how-can-i-mount-sftp-ssh-in-finder-on-os-x-snow-leopard
@@ -30,8 +44,7 @@ ssh -L 3336:db001.host:3306 user@pub001.host
 sudo sshfs -o allow_other,default_permissions,IdentityFile=~/.ssh/id_rsa gpu1:/ ~/gpu1
 ```
 
-scp <source> <destination>
-scp ~/.ssh/id_rsa.pub gpu1:~/max/remote-dev-template/id_rsa.pub
+
 
 
 

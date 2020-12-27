@@ -1,0 +1,12 @@
+version: 3.9  # optional since v1.27.0
+services:
+  remote-debug:
+    build: 
+      args:
+        IMAGE: supervisely/base-py
+    ports:
+      - 7777:22
+    volumes:
+      - .:/code
+    container_name: python-debug
+# docker-compose up -d

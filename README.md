@@ -1,6 +1,8 @@
 # Develop on remote machine
 
 
+ssh copy id
+
 ## 1. Clone template repository
 git clone https://github.com/mkolomeychenko/remote-dev-template
 

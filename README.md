@@ -3,7 +3,9 @@
 You can debug your application using an interpreter that is located on the other computer, for example, on a web server or dedicated test machine. For example: you have laptop + server with GPU in the cloud and you want to develop apps to work with Neural Networks: train / inference / serve
 
 
-## Create an SSH Shortcut (optional one-time step)
+## Configure SSH access to your remote server (optional one-time step)
+
+### 1. Create an SSH Shortcut
 
 If you are constantly needing to SSH into multiple servers, it can real daunting to remember all the different usernames, hostnames, IP addresses, and even sometimes custom private keys to connect to them. It's actually extremely easy to create command line shortcuts to solve this problem. More info here: https://linuxize.com/post/using-the-ssh-config-file/
 
@@ -22,7 +24,7 @@ Host gpu1
 
 In this example shortcut is `gpu1`. `HostName` - is an ip-address to your server.
 
-## Set up public key authentication (optional one-time step)
+### 2. Set up public key authentication
 
 ssh-copy-id installs an SSH key on a server as an authorized key. Its purpose is to provision access without requiring a password for each login. This facilitates automated, passwordless logins and single sign-on using the SSH protocol. More info here: https://www.ssh.com/ssh/copy-id
 
@@ -42,30 +44,26 @@ Authorize you SSH key on remote server. I will need to enter remote server passw
 ssh-copy-id -i ~/.ssh/id_rsa gpu1
 ```
 
-## Check SSH access
+### 3. Check SSH access
 
 Now you can type `ssh gpu1` in terminal to connect to your remote server quickly.
 
 <img src="https://i.imgur.com/8OZH2Xw.png"/>
 
 
+## Run docker container on remote machine
 
+### 1. Clone template repository
 
+Clone template repository on remote server:
 
-
-add server to ssh config
-
-ssh copy id
-
-docker compose (how to use)
-
-
-## 1. Clone template repository
+```sh
 git clone https://github.com/mkolomeychenko/remote-dev-template
+```
 
 Result dir on my remote machine: `~/max/remote-dev-template`
 
-## 2. Copy your SSH public key to template project folder
+### 2. Copy your SSH public key to template project folder
 
 hint: scp <source> <destination>
 ```
@@ -75,7 +73,7 @@ scp ~/.ssh/id_rsa.pub gpu1:~/max/remote-dev-template/id_rsa.pub
 or for local development
 `cp ~/.ssh/id_rsa.pub ~/max/remote-dev-template/id_rsa.pub`
 
-## 3. Run docker container
+### 3. Run docker container
 - change dockerimage in dev.sh
 - run container
 ```
@@ -86,7 +84,7 @@ cd ~/max/remote-dev-template && \
 
 backup link: https://www.dontpanicblog.co.uk/2018/11/30/ssh-into-a-docker-container/
 
-## 4. SSH into container
+### 4. SSH into container
 `ssh sshuser@gpu1 -p 7777`
 
 or
@@ -94,7 +92,7 @@ or
 `ssh sshuser@localhost -p 7777 -i ~/.ssh/id_rsa.pub`
 
 
-## Browse files on remote server
+### Browse files on remote server
 https://apple.stackexchange.com/questions/5209/how-can-i-mount-sftp-ssh-in-finder-on-os-x-snow-leopard
 
 ```

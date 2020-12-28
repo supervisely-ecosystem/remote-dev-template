@@ -16,8 +16,8 @@ Add Server Info to the end of file:
 
 ```
 Host gpu1
-	HostName XX.XXX.XXX.XX
-	User root
+     HostName XX.XXX.XXX.XX
+     User root
 ```
 
 In this example shortcut is `gpu1`. `HostName` - is an ip-address to your server.

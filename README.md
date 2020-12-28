@@ -3,9 +3,9 @@
 You can debug your application using an interpreter that is located on the other computer, for example, on a web server or dedicated test machine. For example: you have laptop + server with GPU in the cloud and you want to develop apps to work with Neural Networks: train / inference / serve
 
 
-## Configure SSH access to your remote server 
+## Configure SSH access to your remote server (optional one-time step)
 
-### Create an SSH Shortcut (optional one-time step)
+### 1. Create an SSH Shortcut
 
 If you are constantly needing to SSH into multiple servers, it can real daunting to remember all the different usernames, hostnames, IP addresses, and even sometimes custom private keys to connect to them. It's actually extremely easy to create command line shortcuts to solve this problem. More info here: https://linuxize.com/post/using-the-ssh-config-file/
 
@@ -24,7 +24,7 @@ Host gpu1
 
 In this example shortcut is `gpu1`. `HostName` - is an ip-address to your server.
 
-### Set up public key authentication (optional one-time step)
+### 2. Set up public key authentication
 
 ssh-copy-id installs an SSH key on a server as an authorized key. Its purpose is to provision access without requiring a password for each login. This facilitates automated, passwordless logins and single sign-on using the SSH protocol. More info here: https://www.ssh.com/ssh/copy-id
 
@@ -44,7 +44,7 @@ Authorize you SSH key on remote server. I will need to enter remote server passw
 ssh-copy-id -i ~/.ssh/id_rsa gpu1
 ```
 
-### Check SSH access
+### 3. Check SSH access
 
 Now you can type `ssh gpu1` in terminal to connect to your remote server quickly.
 

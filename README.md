@@ -22,14 +22,32 @@ Host gpu1
 
 In this example shortcut is `gpu1`. `HostName` - is an ip-address to your server.
 
-## Optional: Authorize your SSH public key
-ssh-copy-id installs an SSH key on a server as an authorized key. Its purpose is to provision access without requiring a password for each login. This facilitates automated, passwordless logins and single sign-on using the SSH protocol.
+## Optional: Set up public key authentication
 
-More info here: https://www.ssh.com/ssh/copy-id
+ssh-copy-id installs an SSH key on a server as an authorized key. Its purpose is to provision access without requiring a password for each login. This facilitates automated, passwordless logins and single sign-on using the SSH protocol. More info here: https://www.ssh.com/ssh/copy-id
 
+
+Check that you have SSH keys:
+```sh
+cat ~/.ssh/id_rsa.pub
 ```
 
+If you see message `No such file or directory` then run following command to generate as SSH key:
+```sh
+ssh-keygen
 ```
+
+Authorize you SSH key on remote server. I will need to enter remote server password
+```
+ssh-copy-id -i ~/.ssh/id_rsa gpu1
+```
+
+## Check SSH access
+
+Now you can type `ssh gpu1` in terminal to connect to your remote server quickly.
+
+<img src="https://i.imgur.com/8OZH2Xw.png"/>
+
 
 
 

@@ -111,19 +111,16 @@ Execute on local machine:
 Now you can SHH into container that is started on your remote server.
 
 
-### Browse files on remote server
+## TODO: Browse files on remote server
 https://apple.stackexchange.com/questions/5209/how-can-i-mount-sftp-ssh-in-finder-on-os-x-snow-leopard
 
 Install (MacOs):
-
 ```sh
 brew install osxfuse
 brew install sshfs
 ```
 
-
-Run on your computer: mount remote directory  `/root/tutorial/remote-dev-template` to local directory `~/remote-dir`:
-
+Run on your local computer: mount remote directory  `/root/tutorial/remote-dev-template` to local directory `~/remote-dir`:
 ```sh
 sshfs gpu1:/root/tutorial/remote-dev-template ~/remote-dir -ovolname=remote-dir
 ```

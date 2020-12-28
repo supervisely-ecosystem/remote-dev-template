@@ -129,3 +129,38 @@ to unmount:
 ```sh
 umount -f ~/remote-dir
 ```
+
+## Configure remote debug with PyCharm
+
+With PyCharm you can debug your application using an interpreter that is located in docker container on remote server. This is a Professional feature: [download PyCharm Professional](https://www.jetbrains.com/pycharm/download) to try.
+
+All steps in this section are performed on your local machine.
+
+### 1. Clone repository with demo project
+
+Run on you local machine:
+```sh
+cd ~ && \
+git clone https://github.com/supervisely-ecosystem/while-true-script && \
+cd ~/while-true-script
+```
+
+### 2. Run PyCharm Professional
+
+Press `Open` button:
+<img src="https://i.imgur.com/aHZWKfn.png"/>
+
+Go to demo project's folder `~/while-true-script` (1) and press `Open` button (2):
+<img src="https://i.imgur.com/i4G9uvH.png"/>
+
+### 3. Configure Project Interpreter
+
+Wait untill PyCharm suggest to configure interpreter. Press `Cancel` button (1):
+<img src="https://i.imgur.com/bdctiMg.png"/>
+
+
+
+
+
+
+

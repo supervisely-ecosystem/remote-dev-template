@@ -53,19 +53,30 @@ Now you can type `ssh gpu1` in terminal to connect to your remote server quickly
 
 ## Run docker container on remote machine
 
-### 1. Clone template repository
+### Prerequisites
 
-Clone template repository on remote server:
+Install `docker` and `docker-compose` on remote server:
 
 ```sh
-git clone https://github.com/mkolomeychenko/remote-dev-template
+
+apt-get install -y docker-compose
+```
+
+
+### 1. Clone template repository
+
+On remote server: create folder and clone template repository:
+
+```sh
+mkdir -p ~/example && \
+cd  ~/example && \
+git clone https://github.com/supervisely-ecosystem/remote-dev-template
 ```
 
 Result dir on my remote machine: `~/max/remote-dev-template`
 
 ### 2. Copy your SSH public key to template project folder
 
-hint: scp <source> <destination>
 ```
 scp ~/.ssh/id_rsa.pub gpu1:~/max/remote-dev-template/id_rsa.pub
 ```

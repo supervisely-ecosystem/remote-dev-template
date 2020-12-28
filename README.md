@@ -55,59 +55,80 @@ Now you can type `ssh gpu1` in terminal to connect to your remote server quickly
 
 ### Prerequisites
 
-Install `docker` and `docker-compose` on remote server:
-
-```sh
-
-apt-get install -y docker-compose
-```
+Be sure, that `[docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)` and `[docker-compose](https://docs.docker.com/compose/install/)` are installed on your remote server
 
 
 ### 1. Clone template repository
 
-On remote server: create folder and clone template repository:
+On remote server: create working directory (for example: `~/tutorial`) and clone template repository:
 
 ```sh
-mkdir -p ~/example && \
-cd  ~/example && \
+mkdir -p ~/tutorial && \
+cd  ~/tutorial && \
 git clone https://github.com/supervisely-ecosystem/remote-dev-template
 ```
 
-Result dir on my remote machine: `~/max/remote-dev-template`
+### 2. Copy your SSH public key to template project folder 
 
-### 2. Copy your SSH public key to template project folder
+Copy public SSH key from your local computer to remote server by executing following command:
 
+Example: 
+```sh
+scp ~/.ssh/id_rsa.pub <ssh shortcut>:<path to template project>/id_rsa.pub
 ```
-scp ~/.ssh/id_rsa.pub gpu1:~/max/remote-dev-template/id_rsa.pub
-```
 
-or for local development
-`cp ~/.ssh/id_rsa.pub ~/max/remote-dev-template/id_rsa.pub`
+For this tutotial the command is the following:
+```sh
+scp ~/.ssh/id_rsa.pub gpu1:~/tutorial/remote-dev-template/id_rsa.pub
+```
 
 ### 3. Run docker container
-- change dockerimage in dev.sh
-- run container
-```
-cd ~/max/remote-dev-template && \
-./dev.sh
-
-```
 
 backup link: https://www.dontpanicblog.co.uk/2018/11/30/ssh-into-a-docker-container/
 
+Execute on remote machine:
+```sh
+cd ~/tutorial/remote-dev-template && \
+docker-compose up -d --build
+```
+
+To list containers run:
+```sh
+docker-compose ps
+```
+
+To kill container:
+```sh
+docker-compose kill
+```
+
 ### 4. SSH into container
+
+Execute on local machine:
+
 `ssh sshuser@gpu1 -p 7777`
 
-or
-
-`ssh sshuser@localhost -p 7777 -i ~/.ssh/id_rsa.pub`
+Now you can SHH into container that is started on your remote server.
 
 
 ### Browse files on remote server
 https://apple.stackexchange.com/questions/5209/how-can-i-mount-sftp-ssh-in-finder-on-os-x-snow-leopard
 
-```
+Install (MacOs):
+
+```sh
 brew install osxfuse
 brew install sshfs
-sshfs gpu1:/root/max/remote-dev-template ~/gpu1 -ovolname=gpu1
+```
+
+
+Run on your computer: mount remote directory  `/root/tutorial/remote-dev-template` to local directory `~/remote-dir`:
+
+```sh
+sshfs gpu1:/root/tutorial/remote-dev-template ~/remote-dir -ovolname=remote-dir
+```
+
+to unmount:
+```sh
+umount -f ~/remote-dir
 ```

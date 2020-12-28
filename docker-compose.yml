@@ -1,12 +1,11 @@
+version: "2.2"
 services:
-  remote-dev:
+  devssh:
     build: 
+      context: .
       args:
         IMAGE: supervisely/base-py
     ports:
-      - 7777:22
+      - "7777:22"
     volumes:
-      - ./data:/data
-    container_name: app-debug
-
-# docker-compose up -d
+      - "./data:/data"

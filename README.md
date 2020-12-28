@@ -158,9 +158,11 @@ Go to demo project's folder `~/while-true-script` (1) and press `Open` button (2
 Wait untill PyCharm suggest to configure interpreter. Press `Cancel` button (1):
 <img src="https://i.imgur.com/bdctiMg.png"/>
 
+Open PyCharm preferences:
+<img src="https://i.imgur.com/r3B4qef.png"/> 
 
-
-
+Choose current project (1) and press `Configure`->`Add` button (2):
+<img src="https://i.imgur.com/hbg3ec1.png"/> 
 
 
 

@@ -54,7 +54,12 @@ Now you can type `ssh gpu1` in terminal to connect to your remote server quickly
 ## Run docker container on remote machine
 
 ### 1. Clone template repository
+
+Clone template repository on remote server:
+
+```sh
 git clone https://github.com/mkolomeychenko/remote-dev-template
+```
 
 Result dir on my remote machine: `~/max/remote-dev-template`
 

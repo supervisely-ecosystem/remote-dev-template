@@ -3,6 +3,8 @@
 You can debug your application using an interpreter that is located on the other computer, for example, on a web server or dedicated test machine. For example: you have laptop + server with GPU in the cloud and you want to develop apps to work with Neural Networks: train / inference / serve
 
 
+# Configure SSH access to your remote server 
+
 ## Create an SSH Shortcut (optional one-time step)
 
 If you are constantly needing to SSH into multiple servers, it can real daunting to remember all the different usernames, hostnames, IP addresses, and even sometimes custom private keys to connect to them. It's actually extremely easy to create command line shortcuts to solve this problem. More info here: https://linuxize.com/post/using-the-ssh-config-file/
@@ -49,16 +51,7 @@ Now you can type `ssh gpu1` in terminal to connect to your remote server quickly
 <img src="https://i.imgur.com/8OZH2Xw.png"/>
 
 
-
-
-
-
-add server to ssh config
-
-ssh copy id
-
-docker compose (how to use)
-
+# Run docker container on remote machine
 
 ## 1. Clone template repository
 git clone https://github.com/mkolomeychenko/remote-dev-template

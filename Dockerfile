@@ -4,10 +4,13 @@ FROM $IMAGE
 RUN apt-get update && apt-get install -y openssh-server
 EXPOSE 22
 
+RUN apt-get install sudo -y
+
 RUN mkdir -p /run/sshd
 
 # Create a group and user account for the SSH connection
 RUN groupadd sshgroup && useradd -ms /bin/bash -g sshgroup sshuser
+RUN usermod -aG sudo sshuser
 
 # NOT RECOMMENDED: Set a password on the sshuser account
 # RUN echo 'sshuser:Pa$$word' | chpasswd

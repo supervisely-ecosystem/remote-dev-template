@@ -1,5 +1,10 @@
 # Develop on remote machine
 
+@TODO:
+- change tutorial to root
+- how to kill
+- how to browse remote folder
+
 You can debug your application using an interpreter that is located on the other computer, for example, on a web server or dedicated test machine. For example: you have laptop + server with GPU in the cloud and you want to develop apps to work with Neural Networks: train / inference / serve
 
 

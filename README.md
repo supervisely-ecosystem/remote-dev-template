@@ -221,3 +221,7 @@ Now everything is defines, press `Finish` button:
 You should see something like this - the list of python packages, press `OK` button:
 <img src="https://i.imgur.com/PVD39Ft.png"/>
 
+The last step is to install dependencies from `requirements.txt`:
+<img src="https://i.imgur.com/EqDVNpO.png"/>
+
+

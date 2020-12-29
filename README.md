@@ -55,7 +55,7 @@ Now you can type `ssh gpu1` in terminal to connect to your remote server quickly
 
 ### Prerequisites
 
-Be sure, that `[docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)` and `[docker-compose](https://docs.docker.com/compose/install/)` are installed on your remote server
+Be sure, that [`docker`](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and [`docker-compose`](https://docs.docker.com/compose/install/) are installed on your remote server.
 
 
 ### 1. Clone template repository
@@ -63,6 +63,7 @@ Be sure, that `[docker](https://docs.docker.com/engine/install/ubuntu/#install-u
 On remote server: create working directory (for example: `~/tutorial`) and clone template repository:
 
 ```sh
+# run remote server
 mkdir -p ~/tutorial && \
 cd  ~/tutorial && \
 git clone https://github.com/supervisely-ecosystem/remote-dev-template
@@ -74,42 +75,58 @@ Copy public SSH key from your local computer to remote server by executing follo
 
 Example: 
 ```sh
+# run on local computer
 scp ~/.ssh/id_rsa.pub <ssh shortcut>:<path to template project>/id_rsa.pub
 ```
 
-For this tutotial the command is the following:
+For this tutorial we copy local file `~/.ssh/id_rsa.pub` to remote destination `~/tutorial/remote-dev-template/id_rsa.pub`; the command is the following:
 ```sh
+# run on local computer
 scp ~/.ssh/id_rsa.pub gpu1:~/tutorial/remote-dev-template/id_rsa.pub
 ```
 
 ### 3. Run docker container
+In this section you will define base docker image. Then new docker image will be created on top of the defined one with 
+installed and configured `openssh-server`.
 
 backup link: https://www.dontpanicblog.co.uk/2018/11/30/ssh-into-a-docker-container/
 
-Execute on remote machine:
+Define your docker image in `docker-compose.yml` file. Then execute on a remote server:
 ```sh
+# run on remote server
 cd ~/tutorial/remote-dev-template && \
 docker-compose up -d --build
 ```
 
-To list containers run:
+Let's check the status of our started container:
 ```sh
+# run on remote server
 docker-compose ps
 ```
 
-To kill container:
+You should see something like this:
+```
+           Name                         Command               State          Ports
+------------------------------------------------------------------------------------------
+remotedevtemplate_devssh_1   sh -c /sshd_deamon.sh /ssh ...   Up      0.0.0.0:7777->22/tcp
+```
+
+FYI - to kill container:
 ```sh
+# run on remote server
 docker-compose kill
 ```
 
+Now we have docker container running on remote server that can be directly accessed (securely) via SSH.  
+
 ### 4. SSH into container
-
-Execute on local machine:
-
-`ssh sshuser@gpu1 -p 7777`
 
 Now you can SHH into container that is started on your remote server.
 
+```sh
+# run on local computer
+ssh sshuser@gpu1 -p 7777
+```
 
 ## TODO: Browse files on remote server
 https://apple.stackexchange.com/questions/5209/how-can-i-mount-sftp-ssh-in-finder-on-os-x-snow-leopard
@@ -120,7 +137,7 @@ brew install osxfuse
 brew install sshfs
 ```
 
-Run on your local computer: mount remote directory  `/root/tutorial/remote-dev-template` to local directory `~/remote-dir`:
+Mount remote directory  `/root/tutorial/remote-dev-template` to local directory `~/remote-dir`:
 ```sh
 sshfs gpu1:/root/tutorial/remote-dev-template ~/remote-dir -ovolname=remote-dir
 ```
@@ -132,14 +149,14 @@ umount -f ~/remote-dir
 
 ## Configure remote debug with PyCharm
 
-With PyCharm you can debug your application using an interpreter that is located in docker container on remote server. This is a Professional feature: [download PyCharm Professional](https://www.jetbrains.com/pycharm/download) to try.
+With PyCharm you can debug your application using an interpreter that is located in docker container on remote server. 
+This is a Professional feature: [download PyCharm Professional](https://www.jetbrains.com/pycharm/download) to try. 
+Sources will be stored on your computer and automatically synchronized to remote container using SSH.
 
-All steps in this section are performed on your local machine.
+### 1. Clone repository with demo python project
 
-### 1. Clone repository with demo project
-
-Run on you local machine:
 ```sh
+# run on local computer
 cd ~ && \
 git clone https://github.com/supervisely-ecosystem/while-true-script && \
 cd ~/while-true-script
@@ -164,5 +181,43 @@ Open PyCharm preferences:
 Choose current project (1) and press `Configure`->`Add` button (2):
 <img src="https://i.imgur.com/hbg3ec1.png"/> 
 
+Let's add and configure remote python interpreter:
 
+1. Choose `SSH interpreter`
+
+In `New server configuration` section define:
+
+2. remote host, in our example it is the SSH shortcut `gpu1`
+
+3. remote port, we started container and shared its port 22 (ssh) to port 7777 on remote server
+
+4. username inside container: `sshuser`
+
+5. press `Next` button
+<img src="https://i.imgur.com/ePu5OFl.png"/> 
+
+Now PyCharm connected over SSH inside remote docker container.
+
+Let's define path to python interpreter inside container. 
+<img src="https://i.imgur.com/iI4YKp8.png"/> 
+
+Python path for all Supervisely's docker images
+is `/usr/local/bin/python3.8`
+<img src="https://i.imgur.com/MPPu3RR.png"/>
+
+Now remote python interpreter is defined, and it's time to define how sources from local computer will be synchronized 
+to remote docker container.
+<img src="https://i.imgur.com/G9JVeHh.png"/>
+
+`Remote Path` - where the sources are stored inside remote docker container. Path has to start from `/home/sshuser/`. 
+It is crucial because our user `sshuser` has write permissions only to this directory. In our example destination path 
+is `/home/sshuser/tutorial-project`.
+<img src="https://i.imgur.com/L80Si8Q.png"/>
+
+
+Now everything is defines, press `Finish` button:
+<img src="https://i.imgur.com/jq2vGYR.png"/>
+
+You should see something like this - the list of python packages, press `OK` button:
+<img src="https://i.imgur.com/PVD39Ft.png"/>
 

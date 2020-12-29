@@ -4,7 +4,7 @@ FROM $IMAGE
 RUN apt-get update && apt-get install -y openssh-server
 EXPOSE 22
 
-#RUN apt-get install sudo -y
+RUN apt-get install -y sudo
 RUN mkdir -p /run/sshd
 
 # Create a group and user account for the SSH connection

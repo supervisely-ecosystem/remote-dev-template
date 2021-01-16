@@ -6,6 +6,8 @@
 - how to browse remote folder
 - WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED ([link](https://www.digitalocean.com/community/questions/warning-remote-host-identification-has-changed))
 - pycharm to browse files in container
+- docker-compose-gpu
+- 
 
 You can debug your application using an interpreter that is located on the other computer, for example, on a web server or dedicated test machine. For example: you have laptop + server with GPU in the cloud and you want to develop apps to work with Neural Networks: train / inference / serve
 
@@ -133,6 +135,7 @@ Now you can SHH into container that is started on your remote server.
 ```sh
 # run on local computer
 ssh sshuser@gpu1 -p 7777
+ssh root@gpu1 -p 7777
 ```
 
 ## TODO: Browse files on remote server

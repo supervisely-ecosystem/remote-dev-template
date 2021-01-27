@@ -4,8 +4,10 @@ services:
     build: 
       context: .
       args:
-        IMAGE: supervisely/base-py
+        IMAGE: supervisely/agent
     ports:
-      - "7777:22"
+      - "8888:22"
     volumes:
       - "./data:/data"
+      - "./agent_data:/sly_agent"
+      - "/var/run/docker.sock:/var/run/docker.sock"

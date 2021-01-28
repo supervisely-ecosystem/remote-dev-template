@@ -152,10 +152,21 @@ Mount remote directory  `/root/tutorial/remote-dev-template` to local directory 
 sshfs gpu1:/root/tutorial/remote-dev-template ~/remote-dir -ovolname=remote-dir
 ```
 
+or (max)
+```sh
+sshfs gpu1:/root/work ~/gpu1-work -ovolname=gpu1-work
+```
+
+
 to unmount:
 ```sh
 umount -f ~/remote-dir
 ```
+or (max)
+```sh
+umount -f ~/gpu1-work
+```
+
 
 ## Configure remote debug with PyCharm
 

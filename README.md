@@ -50,7 +50,7 @@ ssh-keygen
 
 Authorize you SSH key on remote server. I will need to enter remote server password
 ```
-ssh-copy-id -i ~/.ssh/id_rsa gpu1
+ssh-copy-id -i ~/.ssh/id_rsa.pub gpu1
 ```
 
 ### 3. Check SSH access

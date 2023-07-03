@@ -57,7 +57,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub gpu1
 
 Now you can type `ssh gpu1` in terminal to connect to your remote server quickly.
 
-<img src="https://i.imgur.com/8OZH2Xw.png"/>
+<img src="media/1_3.png"/>
 
 
 ## Run docker container on remote machine

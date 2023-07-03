@@ -228,21 +228,21 @@ is `/usr/local/bin/python3.8`
 
 Now remote python interpreter is defined, and it's time to define how sources from local computer will be synchronized 
 to remote docker container.
-<img src="https://i.imgur.com/G9JVeHh.png"/>
+<img src="media/2_3g.png"/>
 
 `Remote Path` - where the sources are stored inside remote docker container. Path has to start from `/home/sshuser/`. 
 It is crucial because our user `sshuser` has write permissions only to this directory. In our example destination path 
 is `/home/sshuser/tutorial-project`.
-<img src="https://i.imgur.com/L80Si8Q.png"/>
+<img src="media/2_3h.png"/>
 
 
 Now everything is defines, press `Finish` button:
-<img src="https://i.imgur.com/jq2vGYR.png"/>
+<img src="media/2_3i.png"/>
 
 You should see something like this - the list of python packages, press `OK` button:
-<img src="https://i.imgur.com/PVD39Ft.png"/>
+<img src="media/2_3k.png"/>
 
 The last step is to install dependencies from `requirements.txt`:
-<img src="https://i.imgur.com/EqDVNpO.png"/>
+<img src="media/2_3l.png"/>
 
 

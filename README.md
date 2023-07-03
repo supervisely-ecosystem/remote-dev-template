@@ -186,21 +186,21 @@ cd ~/while-true-script
 ### 2. Run PyCharm Professional
 
 Press `Open` button:
-<img src="https://i.imgur.com/aHZWKfn.png"/>
+<img src="media/2_2.png"/>
 
 Go to demo project's folder `~/while-true-script` (1) and press `Open` button (2):
-<img src="https://i.imgur.com/i4G9uvH.png"/>
+<img src="media/2_2a.png"/>
 
 ### 3. Configure Project Interpreter
 
 Wait untill PyCharm suggest to configure interpreter. Press `Cancel` button (1):
-<img src="https://i.imgur.com/bdctiMg.png"/>
+<img src="media/2_3.png"/>
 
 Open PyCharm preferences:
-<img src="https://i.imgur.com/r3B4qef.png"/> 
+<img src="media/2_3b.png"/> 
 
 Choose current project (1) and press `Configure`->`Add` button (2):
-<img src="https://i.imgur.com/hbg3ec1.png"/> 
+<img src="media/2_3c.png"/> 
 
 Let's add and configure remote python interpreter:
 
@@ -215,16 +215,16 @@ In `New server configuration` section define:
 4. username inside container: `sshuser`
 
 5. press `Next` button
-<img src="https://i.imgur.com/ePu5OFl.png"/> 
+<img src="media/2_3d.png"/> 
 
 Now PyCharm connected over SSH inside remote docker container.
 
 Let's define path to python interpreter inside container. 
-<img src="https://i.imgur.com/iI4YKp8.png"/> 
+<img src="media/2_3e.png"/> 
 
 Python path for all Supervisely's docker images
 is `/usr/local/bin/python3.8`
-<img src="https://i.imgur.com/MPPu3RR.png"/>
+<img src="media/2_3f.png"/>
 
 Now remote python interpreter is defined, and it's time to define how sources from local computer will be synchronized 
 to remote docker container.
